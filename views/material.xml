@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- material search view -->
+    <record id="material_view_search" model="ir.ui.view">
+      <field name="name">material.view.search</field>
+      <field name="model">material</field>
+      <field name="arch" type="xml">
+        <search string="Search Description">
+          <!-- Add your fields here -->
+          <field name="code"/>
+          <field name="name"/>
+          <field name="type"/>
+          <field name="price"/>
+          <field name="supplier_id"/>
+
+          <filter name="fabric" string="Fabric" domain="[('type','ilike','fabric')]"/>
+          <filter name="jeans" string="Jeans" domain="[('type', 'ilike', 'jeans')]"/>
+          <filter name="cotton" string="Cotton" domain="[('type', 'ilike', 'cotton')]"/>
+        </search>
+      </field>
+    </record>
+    <!-- material tree view -->
+    <record id="material_view_tree" model="ir.ui.view">
+      <field name="name">material.view.tree</field>
+      <field name="model">material</field>
+      <field name="arch" type="xml">
+        <tree>
+          <!-- Add your fields here -->
+          <field name="code"/>
+          <field name="name"/>
+          <field name="type"/>
+          <field name="price"/>
+          <field name="supplier_id"/>
+        </tree>
+      </field>
+    </record>
+    <!-- material action window -->
+    <record id="material_action" model="ir.actions.act_window">
+      <field name="name">List Material</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">material</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+          <!-- Add Text Here -->
+        </p><p>
+          <!-- More details about what a user can do with this object will be OK --> 
+        </p>
+      </field>
+    </record>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem
+      id="material_menu_act"
+      name="Material"
+      parent="material_master_menu_act"
+      action="material_action"
+      sequence="20"
+    />
+  </data>
+</odoo>
