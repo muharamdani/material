@@ -6,6 +6,7 @@ from odoo.exceptions import ValidationError
 class Material(models.Model):
     _name = 'material'
     _description = 'material'
+    material_type = ['Fabric', 'Jeans', 'Cotton']
     code = fields.Char(
         string='Material Code',
         required=True,
@@ -16,9 +17,9 @@ class Material(models.Model):
     )
     type = fields.Selection(
         [
-            ('Fabric', 'Fabric'),
-            ('Jeans', 'Jeans'),
-            ('Cotton', 'Cotton'),
+            (material_type[0], material_type[0]),
+            (material_type[1], material_type[1]),
+            (material_type[2], material_type[2]),
         ],
         string='Material Type',
         required=True
@@ -29,6 +30,7 @@ class Material(models.Model):
         digits='Product Unit of Measure',
         default=100,
     )
+    # buy prive < 100 validation
     @api.constrains('price')
     def _check_something(self):
         for record in self:
